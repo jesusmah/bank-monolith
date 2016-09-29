@@ -1,8 +1,8 @@
 #!/bin/bash
 
-IMAGE_NAME=wfd-menu
-MAVEN_BUILD_TARGET=target/wfd-menu-0.0.1-SNAPSHOT.jar
-GRADLE_BUILD_TARGET=build/libs/wfd-menu-0.0.1-SNAPSHOT.jar
+IMAGE_NAME=wfd-ui
+MAVEN_BUILD_TARGET=target/wfd-ui-0.0.1-SNAPSHOT.jar
+GRADLE_BUILD_TARGET=build/libs/wfd-ui-0.0.1-SNAPSHOT.jar
 
 while getopts "md" ARG; do
   case ${ARG} in
