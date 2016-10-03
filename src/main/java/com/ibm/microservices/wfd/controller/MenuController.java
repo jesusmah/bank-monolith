@@ -26,35 +26,16 @@ public class MenuController {
 
 	BasicJsonParser jsonParser = new BasicJsonParser();
 	Map<String, Object> jsonMap = jsonParser.parseMap(menuString);
-	
-	List<String> appetizerOptions = (List<String>)jsonMap.get("appetizers.menu");
+
+	List<String> appetizerOptions = (List<String>)((Map<String, Object>)jsonMap.get("appetizers")).get("menu");
 	model.addAttribute("appetizerOptions", appetizerOptions);
 	
-	List<String> entreeOptions = (List<String>)jsonMap.get("entrees.menu");
+	List<String> entreeOptions = (List<String>)((Map<String, Object>)jsonMap.get("entrees")).get("menu");
 	model.addAttribute("entreeOptions", entreeOptions);
 	
-	List<String> dessertOptions = (List<String>)jsonMap.get("desserts.menu");
+	List<String> dessertOptions = (List<String>)((Map<String, Object>)jsonMap.get("desserts")).get("menu");
 	model.addAttribute("dessertOptions", dessertOptions);
   
-/*	
-    //Extract Appetizer Options
-    List<String> appetizerOptions = new ArrayList<String>();
-    appetizerOptions.add("Cake");
-    appetizerOptions.add("Brownies");
-    appetizerOptions.add("Champagne");
-    //TODO Replace with options from service call response
-    model.addAttribute("appetizerOptions", appetizerOptions);
-
-    //Extract Entree Options
-    List<String> entreeOptions = new ArrayList<String>();
-    //TODO Apply options from service call response
-    model.addAttribute("entreeOptions", entreeOptions);
-
-    //Extract Dessert Options'
-    List<String> dessertOptions = new ArrayList<String>();
-    //TODO Apply options from service call response
-    model.addAttribute("dessertOptions", dessertOptions);
-*/
     return "index";
   }
 
