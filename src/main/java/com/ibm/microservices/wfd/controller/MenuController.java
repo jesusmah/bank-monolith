@@ -1,11 +1,14 @@
-package com.ibm.microservices.wfd.controller;
+package com.ibm.microservices.wfd;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.lang.Object;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.boot.json.BasicJsonParser;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
@@ -19,9 +22,21 @@ public class MenuController {
   @RequestMapping("/")
   public String getMenuForIndex(Model model){
 
-    //TODO Update to return value for Object of some sort
     String menuString = getMenu();
 
+	BasicJsonParser jsonParser = new BasicJsonParser();
+	Map<String, Object> jsonMap = jsonParser.parseMap(menuString);
+	
+	List<String> appetizerOptions = (List<String>)jsonMap.get("appetizers.menu");
+	model.addAttribute("appetizerOptions", appetizerOptions);
+	
+	List<String> entreeOptions = (List<String>)jsonMap.get("entrees.menu");
+	model.addAttribute("entreeOptions", entreeOptions);
+	
+	List<String> dessertOptions = (List<String>)jsonMap.get("desserts.menu");
+	model.addAttribute("dessertOptions", dessertOptions);
+  
+/*	
     //Extract Appetizer Options
     List<String> appetizerOptions = new ArrayList<String>();
     appetizerOptions.add("Cake");
@@ -39,51 +54,13 @@ public class MenuController {
     List<String> dessertOptions = new ArrayList<String>();
     //TODO Apply options from service call response
     model.addAttribute("dessertOptions", dessertOptions);
-
+*/
     return "index";
   }
 
   private String getMenu() {
     String menuString = this.restTemplate.getForObject("http://menu-service/menu", String.class);
     System.out.println(menuString);
-
-    /*
-    menuString is in the format of
-
-    {
-      "entrees": {
-        "order": 2,
-        "menu": [
-          "Steak",
-          "Chicken",
-          "Fish"
-        ],
-        "type": "dinner"
-      },
-      "desserts": {
-        "order": 3,
-        "menu": [
-          "Chocolate Cake",
-          "Banoffee",
-          "Ice Cream"
-        ],
-        "type": "dessert"
-      },
-      "appetizers": {
-        "order": 1,
-        "menu": [
-          "Hummus",
-          "Crab Cakes",
-          "Mozzerella Sticks"
-        ],
-        "type": "appetizer"
-      }
-    }
-
-    */
-
-    //Parse menuString JSON and return as Object
-
     return menuString;
   }
 
