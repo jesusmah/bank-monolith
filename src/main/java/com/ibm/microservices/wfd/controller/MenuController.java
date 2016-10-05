@@ -1,4 +1,4 @@
-package com.ibm.microservices.wfd;
+package com.ibm.microservices.wfd.controller;
 
 import java.util.List;
 import java.util.ArrayList;
