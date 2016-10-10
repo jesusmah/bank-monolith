@@ -1,4 +1,4 @@
-###### microservices-refapp-wfd-ui
+###### refarch-cloudnative-wfd-ui
 
 ### Microservices Reference Application - What's For Dinner User-Interface Service
 
@@ -23,7 +23,7 @@ You can access the user interface directly in a browser via `http://<hostname>:8
 1. Clone git repository.
     ```
     git clone https://github.com/ibm-cloud-architecture/refarch-cloudnative-wfd-ui
-    cd microservices-refapp-wfd-ui
+    cd refarch-cloudnative-wfd-ui
     ```
 
 2. Build the application.  A utility script is provided to easily build using either Gradle (default) or Maven.  You can optionally specify the `-d` parameter to build the associated Docker image as well.
@@ -114,13 +114,13 @@ In this section you will deploy the Spring Boot application to run in a local do
     ```
     cf push -p build/libs/wfd-ui-0.0.1-SNAPSHOT.jar -d mybluemix.net -n wfd-ui-{your-bluemix-user-id} --no-start
 
-    cf set-env microservices-refapp-wfd-ui SPRING_PROFILES_ACTIVE cloud
+    cf set-env wfd-ui SPRING_PROFILES_ACTIVE cloud
 
-    cf bind-service microservices-refapp-wfd-ui eureka-service-discovery
+    cf bind-service wfd-ui eureka-service-discovery
 
-    cf restage microservices-refapp-wfd-ui
+    cf restage wfd-ui
 
-    cf start microservices-refapp-wfd-ui
+    cf start wfd-ui
     ```
 
 7. Validate via `http://localhost:8181` in your browser.  

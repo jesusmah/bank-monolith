@@ -1,3 +1,3 @@
 applications:
-- name: microservices-refapp-wfd-ui
+- name: wfd-ui
   memory: 256M
