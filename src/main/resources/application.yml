@@ -3,7 +3,7 @@ spring:
     name: whats-for-dinner
 
 server:
-  port: 8181
+  port: ${vcap.application.port:8181}
 
 eureka:
   client:
