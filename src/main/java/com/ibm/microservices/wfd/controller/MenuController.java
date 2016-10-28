@@ -46,14 +46,26 @@ public class MenuController {
 
   public String getDefaultMenu(Model model){
 
-    List<String> default1 = new ArrayList<String>();
-    model.addAttribute("appetizerOptions", default1);
+    List<String> appetizerList = new ArrayList<String>();
+                 appetizerList.add("Chips");
+                 appetizerList.add("Salsa");
+                 appetizerList.add("Bruschetta");
 
-    List<String> default2 = new ArrayList<String>();
-    model.addAttribute("entreeOptions", default2);
+    model.addAttribute("appetizerOptions", appetizerList);
 
-    List<String> default3 = new ArrayList<String>();
-    model.addAttribute("dessertOptions", default3);
+    List<String> entreeList = new ArrayList<String>();
+                 entreeList.add("Hamburger");
+                 entreeList.add("Hot Dog");
+                 entreeList.add("Spaghetti");
+
+    model.addAttribute("entreeOptions", entreeList);
+
+    List<String> dessertList = new ArrayList<String>();
+                 dessertList.add("Cookies");
+                 dessertList.add("Candy");
+                 dessertList.add("Cake");
+
+    model.addAttribute("dessertOptions", dessertList);
 
     return "index";
   }
