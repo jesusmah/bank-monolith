@@ -32,7 +32,8 @@
       </li>
     </ul>
 
-    <h4>Trace ID: <a th:href="@{/zipkin-tracing/traces/{traceId}(traceId=${TraceId})}"><span th:text="${TraceId}">UNSET</span></a></h4>
+    <h4>Trace ID: <!--<a th:href="@{/zipkin-tracing/traces/{traceId}(traceId=${TraceId})}">--><span th:text="${TraceId}">UNSET</span><!--</a>--></h4>
+    <!-- HREF removed for now until proxying through Zuul can be accomplished, which is required to have dynamic link to Zipkin UI -->
 
 </body>
 </html>

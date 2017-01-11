@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.lang.Object;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +25,8 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 @Controller
 public class MenuController {
 
+  private static final Log log = LogFactory.getLog(MenuController.class);
+
   @Autowired
   private RestTemplate restTemplate;
 
@@ -33,7 +38,7 @@ public class MenuController {
   public String getMenuForIndex(Model model){
 
     String menuString = this.restTemplate.getForObject("http://menu-service/menu", String.class);
-    System.out.println(menuString); //TODO Replace this with standard logging practices
+    log.info(menuString);
 
     BasicJsonParser jsonParser = new BasicJsonParser();
     Map<String, Object> jsonMap = jsonParser.parseMap(menuString);
