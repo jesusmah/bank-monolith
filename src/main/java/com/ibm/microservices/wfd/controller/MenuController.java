@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.lang.Object;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,21 +16,29 @@ import org.springframework.boot.json.BasicJsonParser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
+import org.springframework.cloud.sleuth.Span;
+import org.springframework.cloud.sleuth.SpanAccessor;
+
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @Controller
 public class MenuController {
 
+  private static final Log log = LogFactory.getLog(MenuController.class);
+
   @Autowired
   private RestTemplate restTemplate;
+
+  @Autowired
+  private SpanAccessor spanAccessor;
 
   @RequestMapping("/")
   @HystrixCommand(fallbackMethod="getDefaultMenu", groupKey="WhatsForDinnerUI", commandKey="GetMenuForUI")
   public String getMenuForIndex(Model model){
 
     String menuString = this.restTemplate.getForObject("http://menu-service/menu", String.class);
-    System.out.println(menuString);
+    log.info(menuString);
 
     BasicJsonParser jsonParser = new BasicJsonParser();
     Map<String, Object> jsonMap = jsonParser.parseMap(menuString);
@@ -40,6 +51,13 @@ public class MenuController {
 
     List<String> dessertOptions = (List<String>)((Map<String, Object>)jsonMap.get("desserts")).get("menu");
     model.addAttribute("dessertOptions", dessertOptions);
+
+    Span span = this.spanAccessor.getCurrentSpan();
+    String traceId = "UNSET";
+    if(span != null){
+      traceId = Span.idToHex(span.getTraceId());
+    }
+    model.addAttribute("TraceId", traceId);
 
     return "index";
   }
