@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>wfd-ui</artifactId>
+    <artifactId>bank-monolith</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   	<packaging>jar</packaging>
 
@@ -15,13 +15,9 @@
     </parent>
 
     <dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
+      <dependency>
+			  <groupId>org.springframework.boot</groupId>
+			  <artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -37,20 +33,13 @@
           <optional>true</optional>
       </dependency>
       <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-eureka</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-hystrix</artifactId>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-netflix-hystrix-stream</artifactId>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
       </dependency>
     </dependencies>
 

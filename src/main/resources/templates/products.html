@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/products.css}" />
+
+    <title>CASE Bank - Products</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+  <h1>CASE Bank</h1>
+
+  <h3>IBM Cloud Architecture - Strangling the monolith</h3>
+
+    <p>Products</p>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.description}">descirption</td>
+            </tr>
+        </table>
+
+</body>
+</html>

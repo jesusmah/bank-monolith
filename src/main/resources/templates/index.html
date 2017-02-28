@@ -1,39 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/whats-for-dinner/css/index.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/products.css}" />
 
-    <title>What's for Dinner? - IBM Cloud Architecture - Microservices Reference Application for Netflix OSS</title>
+    <title>CASE Bank - Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <h1>What's for Dinner?</h1>
-    <h3>IBM Cloud Architecture - Microservices Reference Application for Netflix OSS</h3>
+    <h1>CASE Bank</h1>
 
-    <p>Appetizers</p>
-    <ul>
-      <li th:each="opts1 : ${appetizerOptions}">
-        <p th:text="${{opts1}}" />
-      </li>
-    </ul>
+    <h3>IBM Cloud Architecture - Strangling the monolith</h3>
 
-    <p>Entrees</p>
-    <ul>
-      <li th:each="opts2 : ${entreeOptions}">
-        <p th:text="${{opts2}}" />
-      </li>
-    </ul>
-
-    <p>Desserts</p>
-    <ul>
-      <li th:each="opts3 : ${dessertOptions}">
-        <p th:text="${{opts3}}" />
-      </li>
-    </ul>
-
-    <h4>Trace ID: <!--<a th:href="@{/zipkin-tracing/traces/{traceId}(traceId=${TraceId})}">--><span th:text="${TraceId}">UNSET</span><!--</a>--></h4>
-    <!-- HREF removed for now until proxying through Zuul can be accomplished, which is required to have dynamic link to Zipkin UI -->
+    <div>
+    <p>
+      This application is a monolith application that simulates a bank application.<br/>
+      It will be used to demo the strangling pattern for monolith application which is used <br/>
+      to migrate your monolithic application architecture towards a microservices application architecture.
+    </p>
+  </div>
 
 </body>
 </html>
